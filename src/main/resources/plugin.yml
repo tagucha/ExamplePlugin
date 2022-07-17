@@ -1,0 +1,4 @@
+name: ExamplePlugin
+version: 1.0-SNAPSHOT
+main: com.example.exampleplugin.ExamplePlugin
+api-version: 1.19
