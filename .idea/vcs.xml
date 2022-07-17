@@ -8,5 +8,9 @@
     <mapping directory="$PROJECT_DIR$/lib/Spigot" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/Spigot/Spigot-API" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/Spigot/Spigot-Server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/temp/BuildData" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/temp/Bukkit" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/temp/CraftBukkit" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/temp/Spigot" vcs="Git" />
   </component>
 </project>

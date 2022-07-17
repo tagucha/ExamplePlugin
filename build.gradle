@@ -11,9 +11,11 @@ repositories {
 }
 
 dependencies {
-    def downloadDir = new File('lib')
+    def downloadDir = new File('temp')
+    def libDir = new File('lib')
     downloadDir.deleteDir()
     downloadDir.mkdir()
+    libDir.mkdir()
 
     download.run {
         src 'https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar'
@@ -22,12 +24,25 @@ dependencies {
     }
 
     javaexec {
-        workingDir = "lib"
-        classpath = files("lib/BuildTool.jar")
+        workingDir = "temp"
+        classpath = files("temp/BuildTool.jar")
         args('--rev', spigotVersion)
     }
 
-    compileOnly(fileTree("lib/Spigot/Spigot-Server/target").filter {f -> f.name.endsWith("-SNAPSHOT.jar") && f.name.startsWith("spigot-" + spigotVersion)})
-    compileOnly(fileTree("lib/Spigot/Spigot-API/target").filter {f -> f.name.endsWith("-shaded.jar")})
+    copy {
+        from 'temp/Spigot/Spigot-Server/target'
+        into 'lib'
+        include 'spigot-*-SNAPSHOT.jar'
+    }
+
+    copy {
+        from 'temp/Spigot/Spigot-API/target'
+        into 'lib'
+        include 'spigot-*-SNAPSHOT.jar'
+    }
+
+    downloadDir.deleteDir()
+
+    compileOnly(fileTree('lib'))
 }
 
